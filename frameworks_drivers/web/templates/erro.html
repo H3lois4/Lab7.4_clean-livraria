@@ -1,0 +1,5 @@
+{% extends "base.html" %}
+{% block conteudo %}
+  <h1>{{ mensagem }}</h1>
+  <p><a href="{{ url_for('livros.buscar') }}">Voltar para a busca</a></p>
+{% endblock %}

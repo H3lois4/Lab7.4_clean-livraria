@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <title>{% block titulo %}Livraria{% endblock %}</title>
+  <link rel="stylesheet" href="{{ url_for('static', filename='style.css') }}">
+</head>
+<body>
+  <header>
+    <div class="conteudo">
+      <a class="marca" href="{{ url_for('livros.buscar') }}">Livraria</a>
+      <nav>
+        <a href="{{ url_for('livros.buscar') }}">Buscar livros</a>
+        <a href="{{ url_for('lojas.listar') }}">Lojas</a>
+        <a href="{{ url_for('avisos.notificacoes') }}">Notificações</a>
+        <a href="{{ url_for('avisos.formulario_estoque') }}">Repor estoque</a>
+      </nav>
+    </div>
+  </header>
+  <main class="conteudo">
+    {% for categoria, mensagem in get_flashed_messages(with_categories=true) %}
+      <p class="aviso {{ 'erro' if categoria == 'erro' }}" role="status">{{ mensagem }}</p>
+    {% endfor %}
+    {% block conteudo %}{% endblock %}
+  </main>
+</body>
+</html>

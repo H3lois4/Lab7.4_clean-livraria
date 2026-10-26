@@ -1,0 +1,14 @@
+{% extends "base.html" %}
+{% block titulo %}Notificações – Livraria{% endblock %}
+{% block conteudo %}
+  <h1>Notificações</h1>
+  {% if notificacoes %}
+    <ul class="lista">
+      {% for n in notificacoes %}
+        <li class="cartao"><p>{{ n.mensagem }}</p><p class="suave">{{ n.data }}</p></li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="suave">Nenhuma notificação. Abra um livro esgotado e toque em "Avisar quando chegar".</p>
+  {% endif %}
+{% endblock %}

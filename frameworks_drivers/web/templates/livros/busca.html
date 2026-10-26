@@ -1,0 +1,24 @@
+{% extends "base.html" %}
+{% block conteudo %}
+  <h1>Veja se o livro está na loja antes de sair de casa</h1>
+  <form class="busca" method="get" action="{{ url_for('livros.buscar') }}">
+    <input type="search" name="q" value="{{ termo }}" placeholder="Título ou autor" aria-label="Título ou autor">
+    <button>Buscar</button>
+  </form>
+
+  {% if livros %}
+    <ul class="lista">
+      {% for livro in livros %}
+        <li class="cartao">
+          <div class="linha">
+            <a class="titulo" href="{{ url_for('livros.detalhe', isbn=livro.isbn) }}">{{ livro.titulo }}</a>
+            <span class="preco">{{ livro.preco }}</span>
+          </div>
+          <p class="suave">{{ livro.autor }}</p>
+        </li>
+      {% endfor %}
+    </ul>
+  {% else %}
+    <p class="suave">Nenhum livro encontrado. Tente outro título ou o nome do autor.</p>
+  {% endif %}
+{% endblock %}
